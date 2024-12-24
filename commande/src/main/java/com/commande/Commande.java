@@ -2,20 +2,31 @@ package com.commande;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Commande {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long produitId;
-    private Integer quantite;
-    private LocalDateTime dateCommande;
-
+    private Long produitId; // Reference to Produit
+    private String produitNom;
+    private double prixUnitaire;
+    private double totalPrix;
+    private int quantite;
     private String status;
+    private LocalDateTime createdAt;
 
 
     public Long getId() {
@@ -43,11 +54,11 @@ public class Commande {
     }
 
     public LocalDateTime getDateCommande() {
-        return dateCommande;
+        return createdAt;
     }
 
     public void setDateCommande(LocalDateTime dateCommande) {
-        this.dateCommande = dateCommande;
+        this.createdAt = createdAt;
     }
 
     public String getStatus() {
